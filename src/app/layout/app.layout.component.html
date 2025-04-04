@@ -3,12 +3,11 @@
     <div class="layout-sidebar">
         <app-sidebar></app-sidebar>
     </div>
-    <div class="layout-main-container">
+    <div class="layout-main-container" [ngClass]="{'p-0 mt-8': router.url === '/home'}">
         <div class="layout-main">
             <router-outlet></router-outlet>
         </div>
         <app-footer></app-footer>
     </div>
-    <app-config></app-config>
     <div class="layout-mask"></div>
 </div>
