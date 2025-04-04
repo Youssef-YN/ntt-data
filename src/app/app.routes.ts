@@ -1,7 +1,13 @@
 import { Routes } from '@angular/router';
-import { HomePageComponent } from './pages/home-page/home-page.component';
+import {AppLayoutComponent} from "./layout/app.layout.component";
 
 export const routes: Routes = [
-    { path: '', component: HomePageComponent }, // Default Home Route
-    { path: '**', redirectTo: '', pathMatch: 'full' } // Redirect unknown paths
+  {
+    path: '',
+    component: AppLayoutComponent,
+    children: [
+      { path: '', redirectTo: 'home', pathMatch: 'full' },
+      { path: 'home', loadComponent: () => import('./pages/home-page/home-page.component').then(m => m.HomePageComponent) }
+    ]
+  }
 ];
