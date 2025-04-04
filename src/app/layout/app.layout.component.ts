@@ -22,12 +22,29 @@ export class AppLayoutComponent implements OnDestroy {
     @ViewChild(AppTopBarComponent) appTopbar!: AppTopBarComponent;
 
     constructor(public layoutService: LayoutService, public renderer: Renderer2, public router: Router) {
+
+      // Hide Side bar on home
+      this.router.events.pipe(filter(event => event instanceof NavigationEnd))
+        .subscribe(() => {
+          this.hideMenu();
+          this.hideProfileMenu();
+
+          // Check if current route has hideSidebar data
+          let currentRoute = this.router.routerState.root;
+          while (currentRoute.firstChild) {
+            currentRoute = currentRoute.firstChild;
+          }
+
+          this.layoutService.state.staticMenuDesktopInactive = !!currentRoute.snapshot.data['hideSidebar'];
+        });
+      //
+
         this.overlayMenuOpenSubscription = this.layoutService.overlayOpen$.subscribe(() => {
             if (!this.menuOutsideClickListener) {
                 this.menuOutsideClickListener = this.renderer.listen('document', 'click', event => {
-                    const isOutsideClicked = !(this.appSidebar.el.nativeElement.isSameNode(event.target) || this.appSidebar.el.nativeElement.contains(event.target) 
+                    const isOutsideClicked = !(this.appSidebar.el.nativeElement.isSameNode(event.target) || this.appSidebar.el.nativeElement.contains(event.target)
                         || this.appTopbar.menuButton.nativeElement.isSameNode(event.target) || this.appTopbar.menuButton.nativeElement.contains(event.target));
-                    
+
                     if (isOutsideClicked) {
                         this.hideMenu();
                     }

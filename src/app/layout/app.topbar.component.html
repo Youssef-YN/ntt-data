@@ -4,7 +4,7 @@
         <span>SAKAI</span>
     </a>
 
-    <button #menubutton class="p-link layout-menu-button layout-topbar-button" (click)="layoutService.onMenuToggle()">
+    <button #menubutton class="p-link layout-menu-button layout-topbar-button" (click)="layoutService.onMenuToggle()" *ngIf="!isHomePage()">
         <i class="pi pi-bars"></i>
     </button>
 

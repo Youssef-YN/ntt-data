@@ -7,7 +7,10 @@ export const routes: Routes = [
     component: AppLayoutComponent,
     children: [
       { path: '', redirectTo: 'home', pathMatch: 'full' },
-      { path: 'home', loadComponent: () => import('./pages/home-page/home-page.component').then(m => m.HomePageComponent) }
+      { path: 'home',
+        loadComponent: () => import('./pages/home-page/home-page.component').then(m => m.HomePageComponent),
+        data: { hideSidebar: true }
+      }
     ]
   }
 ];
