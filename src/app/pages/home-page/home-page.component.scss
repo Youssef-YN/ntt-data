@@ -2,3 +2,58 @@ button:focus {
   outline: none;
   box-shadow: 0 0 4px rgba(59, 130, 246, 0.5);
 }
+
+.chart-card {
+  max-width: 900px;
+  padding: 2rem;
+  margin: 2rem auto;
+  background-color: #fff;
+  border-radius: 1rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.chart-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 500px;
+  width: 100%;
+}
+
+
+.chart-container canvas {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.button-group {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.p-button-lg {
+  font-size: 1.2rem;
+  padding: 1rem 2rem;
+}
+
+::ng-deep p-chart canvas {
+  width: 100% !important;
+  max-width: 100% !important;
+  height: 100% !important;
+}
+
+::ng-deep p-chart.pie-chart canvas {
+  width: 100% !important;
+  max-width: 100% !important;
+  height: 100% !important;
+}
+
+.pie-wrapper {
+  width: 100%;
+  max-width: 500px;
+  height: 500px;
+  margin: auto;
+}
